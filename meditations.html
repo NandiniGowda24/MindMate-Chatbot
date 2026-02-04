@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meditation & Mindfulness</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #ffe6f0; /* baby pink background */
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #ff99cc, #ff6699);
+      color: white;
+      padding: 1.8rem;
+      text-align: center;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-style: italic;
+    }
+
+    /* Slideshow */
+    .slideshow {
+      position: relative;
+      max-width: 100%;
+      height: 350px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin: 20px auto;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    .slides {
+      display: none;
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+    .quote {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 15px;
+    }
+    h2 {
+      color: #b23a48;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+      text-align: center;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      min-height: 380px; /* ensures equal card height */
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+      height: 160px;
+      object-fit: cover;
+    }
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    .card h3 {
+      margin: 10px 0;
+      color: #ff6699;
+    }
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: linear-gradient(135deg, #ff99cc, #ff6699);
+      color: white;
+      margin-top: 40px;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧘 Meditation & Mindfulness</h1>
+    <p>Find your inner calm and peace</p>
+  </header>
+
+  <!-- Slideshow -->
+  <div class="slideshow">
+    <img class="slides" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Ocean Meditation">
+    <div class="quote">“Peace comes from within. Do not seek it without.”</div>
+    
+    <img class="slides" src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Mountain Meditation">
+    <div class="quote">“Inhale the future, exhale the past.”</div>
+    
+    <img class="slides" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Forest Meditation">
+    <div class="quote">“The present moment is all we ever have.”</div>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="container">
+    <h2>✨ Meditation Techniques ✨</h2>
+    <div class="cards">
+      <a href="/breathing" class="card">
+        <img src="https://images.unsplash.com/photo-1519222970733-f546218fa6d7?auto=format&fit=crop&w=800&q=80" alt="Breathing">
+        <h3>Breathing Meditation</h3>
+        <p>Focus on your breath to center your mind and reduce anxiety.</p>
+      </a>
+
+      <a href="/bodyscan" class="card">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Body Scan">
+        <h3>Body Scan</h3>
+        <p>Relax each part of your body gradually, releasing built-up tension.</p>
+      </a>
+
+      <a href="/mantra" class="card">
+  <img src="{{ url_for('static', filename='images.jpg') }}" alt="Mantra Meditation">
+  <h3>Mantra Meditation</h3>
+  <p>Repeat a calming word or phrase to quiet your mind and focus deeply.</p>
+</a>
+
+      <a href="/walking" class="card">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Walking Meditation">
+        <h3>Walking Meditation</h3>
+        <p>Practice mindfulness while walking slowly and connecting with nature.</p>
+      </a>
+
+      <a href="/visual" class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Visualization">
+        <h3>Visualization</h3>
+        <p>Imagine peaceful images or settings to relax your mind and body.</p>
+      </a>
+
+      <a href="/kindness" class="card">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80" alt="Loving-Kindness">
+        <h3>Loving-Kindness Meditation</h3>
+        <p>Cultivate compassion and positive emotions toward yourself and others.</p>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Meditation & Mindfulness | Breathe. Relax. Be Present.</p>
+  </footer>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.getElementsByClassName("slides");
+      let quotes = document.getElementsByClassName("quote");
+      
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        if (quotes[i]) quotes[i].style.display = "none";
+      }
+      
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex-1].style.display = "block";
+      if (quotes[slideIndex-1]) quotes[slideIndex-1].style.display = "block";
+      
+      setTimeout(showSlides, 4000); // Change slide every 4s
+    }
+  </script>
+</body>
+</html>

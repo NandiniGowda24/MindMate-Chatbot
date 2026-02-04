@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindMate Chatbot</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #fff5f8;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #f8d7e0;
+      color: #4b2c2c;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      text-align: center;
+      color: #b23a48;
+    }
+
+    .menu-item {
+      margin: 12px 0;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 10px;
+      transition: background 0.3s;
+      text-decoration: none;
+      color: #4b2c2c;
+      display: block;
+    }
+
+    .menu-item:hover {
+      background-color: rgba(178, 58, 72, 0.2);
+    }
+
+    .resources {
+      margin-top: auto;
+      padding: 15px;
+      background: linear-gradient(135deg, #f7c6d0, #f0aeb8);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .resources a.button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #b23a48;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* Chat section */
+    .chat-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #fff0f5;
+      border-radius: 0 15px 15px 0;
+      overflow: hidden;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+    }
+
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #d8a0b1;
+      color: white;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+    }
+
+    .chat-header button {
+      background-color: #f7b7c4;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .chat-header button:hover {
+      background-color: #e89aa8;
+    }
+
+    /* Messages */
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: #fff0f5;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      max-width: 60%;
+      padding: 12px 18px;
+      border-radius: 20px;
+      line-height: 1.4;
+      word-wrap: break-word;
+      font-size: 14px;
+    }
+
+    .message.user {
+      background-color: #f7d6e0;
+      align-self: flex-start;
+    }
+
+    .message.bot {
+      background-color: #d8a0b1;
+      color: white;
+      align-self: flex-end;
+    }
+
+    /* Input */
+    .chat-input {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #f5c6d1;
+      background-color: #fff5f8;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 25px;
+      border: 1px solid #f0aeb8;
+      outline: none;
+      background-color: #fff0f5;
+    }
+
+    .chat-input button {
+      background-color: #d8a0b1;
+      border: none;
+      color: white;
+      padding: 12px 18px;
+      margin-left: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>MindMate</h2>
+      <a href="/chat" class="menu-item">💬 Chat</a>
+      <a href="/quiz" class="menu-item">🌸 MindCare Checkup</a>
+      <a href="/journal" class="menu-item">📓 Journal</a>
+      <a href="/community" class="menu-item">👥 Community</a>
+      <a href="/meditations" class="menu-item">🧘 Meditation</a>
+      <a href="/therapists" class="menu-item">🩺 Therapists</a>
+
+      <div class="resources">
+        <p><strong>Resources</strong></p>
+        <a href="/resources" class="button">Browse</a>
+      </div>
+    </div>
+
+    <!-- Chat Section -->
+    <div class="chat-section">
+      <div class="chat-header">
+        <h3>MindMate</h3>
+        <button onclick="clearHistory()">Clear</button>
+      </div>
+
+      <div class="chat-messages" id="messages"></div>
+
+      <div class="chat-input">
+        <input type="text" id="text" placeholder="Type your message..."/>
+        <button id="send">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+   
+    const messagesContainer = document.getElementById("messages");
+    const inputField = document.getElementById("text");
+    const sendButton = document.getElementById("send");
+
+  
+    // Add message function
+    function addMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.classList.add("message", sender);
+      msg.innerText = text;
+      messagesContainer.appendChild(msg);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Clear chat function
+    function clearHistory() {
+      messagesContainer.innerHTML = "";
+    }
+
+    // Send message
+    async function sendMessage() {
+      const text = inputField.value.trim();
+      if (!text) return;
+
+      addMessage(text, "user");
+      inputField.value = "";
+
+      try {
+        const response = await fetch("/api/message", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text })
+        });
+
+        if (!response.ok) throw new Error("Server error: " + response.status);
+
+        const data = await response.json();
+        if (data.response) addMessage(data.response, "bot");
+        else addMessage("⚠️ No reply from bot.", "bot");
+      } catch (err) {
+        console.error(err);
+        addMessage("⚠️ Failed to send message: " + err.message, "bot");
+      }
+    }
+
+    // Event listeners
+    sendButton.addEventListener("click", sendMessage);
+    inputField.addEventListener("keypress", e => {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+</body>
+</html>

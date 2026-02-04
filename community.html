@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Awareness Community</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #ffd6eb; /* baby pink */
+      color: #333;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 2rem;
+      text-align: center;
+      background: #ffe6f2;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    .post, .info-card, .post-form {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .post h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      color: #4a90e2;
+    }
+    .post small {
+      color: #777;
+    }
+    .post p {
+      margin: 0.5rem 0;
+    }
+    .actions {
+      margin-top: 0.5rem;
+    }
+    .actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      color: #4a90e2;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #4a90e2;
+      color: white;
+      margin-top: 20px;
+    }
+    .post-form input, .post-form textarea, .post-form button {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.3rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .post-form button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .post-form button:hover {
+      background: #357abd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mental Health Awareness Community</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Posts</a>
+      <a href="#">Resources</a>
+      <a href="#">Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome 🌱</h2>
+    <p>You're not alone. This is a safe space to share, learn, and support each other.</p>
+  </section>
+
+  <div class="container">
+    <h2>Share Your Thoughts 💬</h2>
+    <div class="post-form">
+      <input type="text" id="username" placeholder="Your name">
+      <textarea id="message" rows="3" placeholder="What’s on your mind?"></textarea>
+      <button onclick="addPost()">Post</button>
+    </div>
+
+    <h2>Community Posts</h2>
+    <div id="posts-container">
+      <div class="post">
+        <h3>Alex P. <small>· 2h ago</small></h3>
+        <p>Today I practiced mindfulness for 10 minutes, and it really helped calm my anxiety. Small steps matter! 💙</p>
+        <div class="actions">
+          <button onclick="like(this)">👍 12</button>
+          <button>💬 4</button>
+        </div>
+      </div>
+      <div class="post">
+        <h3>Priya S. <small>· 5h ago</small></h3>
+        <p>Remember: it’s okay to ask for help. Talking to a friend about my stress made me feel lighter. 💚</p>
+        <div class="actions">
+          <button onclick="like(this)">👍 8</button>
+          <button>💬 2</button>
+        </div>
+      </div>
+      <div class="post">
+        <h3>John D. <small>· 1d ago</small></h3>
+        <p>I started journaling before bed, and it helps me process my thoughts. Highly recommend! ✍️</p>
+        <div class="actions">
+          <button onclick="like(this)">👍 20</button>
+          <button>💬 7</button>
+        </div>
+      </div>
+    </div>
+
+    <h2>Resources & Tips</h2>
+    <div class="info-card">
+      <h3>📖 Daily Tip</h3>
+      <p>Take a 5-minute break today to breathe deeply and relax your shoulders.</p>
+    </div>
+    <div class="info-card">
+      <h3>📞 Helplines</h3>
+      <p>If you're struggling, please reach out: <br> National Helpline: 1800-599-0019</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Mental Health Awareness Community | You are not alone 💜</p>
+  </footer>
+
+  <script>
+    function like(button) {
+      let text = button.innerText;
+      let count = parseInt(text.replace(/[^0-9]/g, '')) + 1;
+      button.innerText = `👍 ${count}`;
+    }
+
+    function addPost() {
+      const username = document.getElementById("username").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!username || !message) {
+        alert("Please enter both name and message.");
+        return;
+      }
+
+      const postContainer = document.getElementById("posts-container");
+
+      const newPost = document.createElement("div");
+      newPost.classList.add("post");
+
+      const now = new Date();
+      const time = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+      newPost.innerHTML = `
+        <h3>${username} <small>· just now</small></h3>
+        <p>${message}</p>
+        <div class="actions">
+          <button onclick="like(this)">👍 0</button>
+          <button>💬 0</button>
+        </div>
+      `;
+
+      postContainer.prepend(newPost);
+
+      document.getElementById("username").value = "";
+      document.getElementById("message").value = "";
+    }
+  </script>
+</body>
+</html>

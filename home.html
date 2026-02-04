@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Chatbot</title>
+  <!-- Link CSS from Flask static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Background */
+    .hero {
+      background: url('{{ url_for("static", filename="unnamed.png") }}') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .overlay {
+      text-align: center;
+      color: #333;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 40px;
+      border-radius: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      animation: slideDown 1.2s ease forwards;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      opacity: 0;
+      animation: fadeUp 1.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    /* Button group */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px 0;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      transition: transform 0.3s, background 0.3s;
+      opacity: 0;
+      animation: zoomIn 1s ease forwards;
+      animation-delay: 1.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+    }
+
+    .btn-blue {
+      background: #4cafef;
+      color: white;
+    }
+
+    .btn-blue:hover {
+      background: #3798d4;
+    }
+
+    .btn-orange {
+      background: #ffb366;
+      color: white;
+    }
+
+    .btn-orange:hover {
+      background: #e6954b;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="overlay">
+      <h1>Welcome to MindMate 🐼</h1>
+      <p>Your personal companion for mental wellness</p>
+      <div class="btn-group">
+        <!-- Start Chat button -->
+        <a href="{{ url_for('chat') }}" class="btn btn-blue">Start Chat</a>
+
+        <!-- Journals/Templates button -->
+        <a href="{{ url_for('journal') }}" class="btn btn-orange">Journals/Templates</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Audio -->
+  <audio id="bgAudio" src="{{ url_for('static', filename='home.mp3') }}" autoplay loop></audio>
+
+  <script>
+    window.addEventListener("load", () => {
+      const audio = document.getElementById("bgAudio");
+
+      // Try autoplay (may be blocked until user interacts)
+      audio.play().catch(err => {
+        console.log("Autoplay blocked. Waiting for user interaction.");
+        document.body.addEventListener("click", () => {
+          audio.play();
+        }, { once: true });
+      });
+    });
+  </script>
+</body>
+</html>

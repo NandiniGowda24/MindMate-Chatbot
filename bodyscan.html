@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Body Scan Meditation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #ffd6e8);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      color: #fff;
+      background: linear-gradient(135deg, #ff99cc, #ff6699);
+      width: 100%;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    h2 {
+      color: #b23a48;
+      margin: 1.5rem 0;
+      font-size: 1.8rem;
+    }
+    /* Video Styling */
+    .video-box {
+      margin: 20px auto 40px auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      max-width: 800px;
+    }
+    video {
+      width: 100%;
+      border-radius: 12px;
+      outline: none;
+      display: block;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 150px;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.2);
+    }
+    .card.active {
+      background: linear-gradient(135deg, #ffccd9, #ffe6f0);
+      box-shadow: 0 0 15px rgba(255,102,153,0.5);
+      transform: scale(1.05);
+    }
+    .card h3 {
+      margin: 0;
+      color: #ff6699;
+      font-size: 1.2rem;
+    }
+    /* Hidden instruction inside card */
+    .instruction {
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #444;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+    .instruction a {
+      display: block;
+      margin-top: 10px;
+      color: #b23a48;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .instruction a:hover {
+      text-decoration: underline;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+      background: linear-gradient(135deg, #ff99cc, #ff6699);
+      color: white;
+      width: 100%;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌸 Body Scan Meditation 🌸</h1>
+    <p>Relax each part of your body, step by step</p>
+  </header>
+
+  <!-- Video -->
+  <div class="video-box">
+    <video controls>
+     <source src="{{ url_for('static', filename='meditation.mp4.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="container">
+    <h2>✨ Choose a body part to relax ✨</h2>
+    <div class="cards">
+      <div class="card" data-instruction="Close your eyes and gently notice your head. Relax your forehead, your eyes, and let go of any tension." data-link="https://www.headspace.com/meditation/body-scan">
+        <h3>Head</h3>
+        <div class="instruction"></div>
+      </div>
+      <div class="card" data-instruction="Bring awareness to your shoulders. Drop them gently, allowing them to soften and release stress." data-link="https://www.mindful.org/beginners-body-scan-meditation/">
+        <h3>Shoulders</h3>
+        <div class="instruction"></div>
+      </div>
+      <div class="card" data-instruction="Focus on your chest. Breathe deeply, feeling your chest rise and fall with calmness." data-link="https://www.calm.com/">
+        <h3>Chest</h3>
+        <div class="instruction"></div>
+      </div>
+      <div class="card" data-instruction="Notice your arms. Let them rest naturally, releasing any heaviness in your hands and fingers." data-link="https://positivepsychology.com/body-scan-meditation/">
+        <h3>Arms</h3>
+        <div class="instruction"></div>
+      </div>
+      <div class="card" data-instruction="Shift your attention to your stomach. Allow it to soften with each slow, deep breath." data-link="https://www.uclahealth.org/programs/marc/mindful-meditations">
+        <h3>Stomach</h3>
+        <div class="instruction"></div>
+      </div>
+      <div class="card" data-instruction="Feel your legs. Imagine them becoming light and relaxed, sinking gently into the ground." data-link="https://insighttimer.com/meditation/body-scan">
+        <h3>Legs</h3>
+        <div class="instruction"></div>
+      </div>
+      <div class="card" data-instruction="Finally, focus on your feet. Release any tension and feel grounded, calm, and present." data-link="https://www.healthline.com/health/body-scan-meditation">
+        <h3>Feet</h3>
+        <div class="instruction"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Body Scan Meditation | Breathe. Relax. Be Present.</p>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        cards.forEach(c => {
+          c.classList.remove('active');
+          c.querySelector('.instruction').style.display = 'none';
+        });
+        card.classList.add('active');
+        const text = card.getAttribute('data-instruction');
+        const link = card.getAttribute('data-link');
+        const instructionBox = card.querySelector('.instruction');
+        instructionBox.innerHTML = `
+          <p>${text}</p>
+          <a href="${link}" target="_blank">🔗 Learn more</a>
+        `;
+        instructionBox.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>

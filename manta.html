@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mantra Meditation — Sacred Space</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #ffccd5;
+      color: #4b2b33;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      box-shadow: 0 12px 40px rgba(75,43,51,0.15);
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 64px;
+      color: #9b5770;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      color: #6d2f3a;
+      margin-bottom: 10px;
+    }
+
+    p.lead {
+      font-size: 18px;
+      color: #5f3a3f;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 700px;
+      height: 400px;
+      border-radius: 20px;
+      margin: 20px 0;
+      box-shadow: 0 8px 30px rgba(75,43,51,0.2);
+    }
+
+    .description {
+      font-size: 18px;
+      color: #6b2d38;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .menu {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .menu button {
+      padding: 10px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      background: #ffd6e0;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #6b2d38;
+    }
+
+    .menu button:hover {
+      background: #f6b2c6;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #6b2d38;
+      padding: 30px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Side Menu -->
+  <div class="menu">
+    <button onclick="scrollToMantra('om')">Om Mantra</button>
+    <button onclick="scrollToMantra('hanuman')">Hanuman Mantra</button>
+    <button onclick="scrollToMantra('saraswati')">Saraswati Mantra</button>
+    <button onclick="scrollToMantra('shiv')">Shiva Mantra</button>
+  </div>
+
+ <!-- Om Mantra -->
+<section id="om">
+  <div class="logo">ॐ</div>
+  <h1>Om Mantra</h1>
+  <p class="lead">
+    The primal sound of existence — calming, centering, and spiritually grounding.
+  </p>
+
+  <video controls loop>
+    <source src="/static/om.mp4" type="video/mp4">
+  </video>
+
+  <div class="description"><br>
+    Chant along and feel the vibrations of peace and unity.
+  </div>
+</section>
+
+<!-- Hanuman / Gayathri Mantra -->
+<section id="hanuman">
+  <div class="logo">ॐ</div>
+  <h1>Hanuman Mantra</h1>
+  <p class="lead">
+    Powerful chant for courage, strength, devotion, and protection.
+  </p>
+
+  <video controls loop>
+    <source src="/static/hanuman.mp4" type="video/mp4">
+  </video>
+
+  <div class="description"><br>
+    Listen and chant to invoke courage, focus, and inner strength.
+  </div>
+</section>
+
+<!-- Saraswati Mantra -->
+<section id="saraswati">
+  <div class="logo">ॐ</div>
+  <h1>Saraswati Mantra</h1>
+  <p class="lead">
+    Invoke the goddess of wisdom, arts, and learning.
+  </p>
+
+  <video controls loop>
+    <source src="/static/saraswathi.mp4" type="video/mp4">
+  </video>
+
+  <div class="description"><br>
+    Chant for clarity, knowledge, and peaceful concentration.
+  </div>
+</section>
+
+<!-- Shiva Mantra -->
+<section id="shiv">
+  <div class="logo">ॐ</div>
+  <h1>Shiva Mantra</h1>
+  <p class="lead">
+    Chant for peace, transformation, and divine connection.
+  </p>
+
+  <video controls loop>
+    <source src="/static/shiva.mp4" type="video/mp4">
+  </video>
+
+  <div class="description"><br>
+    Invite calm, focus, and spiritual strength.
+  </div>
+</section>
+
+  <footer>
+    Made with devotion — honor the chants and their living traditions.
+  </footer>
+
+  <script>
+    function scrollToMantra(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>

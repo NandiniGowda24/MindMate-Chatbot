@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kindness Meditation — Sacred Space</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background-color: #ffccd5; color: #4b2b33; }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      color: #6d2f3a;
+      margin-bottom: 12px;
+    }
+
+    p.lead {
+      font-size: 20px;
+      color: #5f3a3f;
+      line-height: 1.8;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .stories {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+      max-width: 900px;
+      margin-top: 30px;
+    }
+
+    .story {
+      background: rgba(255,255,255,0.85);
+      padding: 30px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(75,43,51,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .story:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 50px rgba(75,43,51,0.25);
+    }
+
+    .story img {
+      max-width: 100%;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .story h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #9b5770;
+    }
+
+    .story p {
+      font-size: 18px;
+      color: #6b2d38;
+      line-height: 1.6;
+    }
+
+    .story .full-text {
+      display: none;
+      margin-top: 10px;
+      text-align: justify;
+      font-size: 16px;
+      color: #5a1f2a;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b2d38;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Kindness Meditation</h1>
+    <p class="lead">Immerse yourself in inspiring stories of kindness and compassion. Click on each story to explore deeper reflections on love, generosity, and the beauty of small acts.</p>
+  </header>
+<div class="stories">
+  <div class="story" onclick="toggleStory(this)">
+    <img src="/static/mother_teresa_helping_children.jpg" alt="Mother Teresa helping children">
+    <h3>Mother Teresa’s Compassion for Children</h3>
+    <p>Mother Teresa devoted her life to caring for abandoned children in Calcutta. Click to read more.</p>
+    <p class="full-text">
+      She walked the streets, tended to the sick, and opened shelters where no one else would go. One day, she found a tiny baby left near a busy street. Holding the child close, she whispered comfort and ensured the little one received love, care, and hope. Her philosophy was simple: even a small act of love can ripple through the world, creating waves of kindness that touch countless lives.
+    </p>
+  </div>
+
+  <div class="story" onclick="toggleStory(this)">
+    <img src="/static/kindness_garden.jpg" alt="Community garden act of kindness">
+    <h3>The Community Garden</h3>
+    <p>A woman started a small garden in her neighborhood. Click to read more.</p>
+    <p class="full-text">
+      She planted flowers, vegetables, and herbs on a neglected plot, offering her harvest to anyone who needed it. Curious neighbors joined her, sharing seeds, tools, and stories. Soon, the garden became a hub of friendship, laughter, and cooperation. Children learned to plant and care for life, and the elderly found peace among the blooms. This small act grew into a flourishing symbol of hope and connection.
+    </p>
+  </div>
+
+  <div class="story" onclick="toggleStory(this)">
+    <img src="/static/helping_elderly.jpg" alt="Helping elderly">
+    <h3>Helping the Elderly</h3>
+    <p>A young man visited a senior home every weekend. Click to read more.</p>
+    <p class="full-text">
+      He spent hours listening to stories of long lives filled with joys and sorrows, reading letters and poetry aloud, and celebrating birthdays. Residents who once felt invisible began to smile more, sharing memories and laughter with each other. One elderly woman, who had felt isolated for years, said she finally felt seen and valued again. These simple gestures reminded everyone that attention and compassion can profoundly change someone’s life.
+    </p>
+  </div>
+</div>
+
+    <footer>
+    Made with devotion — let kindness guide your meditation and actions.
+  </footer>
+
+  <script>
+    function toggleStory(story) {
+      const fullText = story.querySelector('.full-text');
+      fullText.style.display = fullText.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>

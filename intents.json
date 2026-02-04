@@ -1,0 +1,701 @@
+{
+  "intents": [
+
+    {
+      "tag": "greeting",
+      "patterns": ["hi", "hello", "hey", "good morning", "good evening", "hiya", "yo", "greetings", "howdy", "hey there"],
+      "responses": ["Hello! How are you feeling today?", "Hey, I’m here to listen. How are you doing?", "Hi! How’s your day going so far?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "see you", "talk later", "take care", "i'm going", "catch you later", "signing off", "gotta go"],
+      "responses": ["Goodbye! Remember, you’re not alone 💙", "Take care of yourself. Talk to you soon!", "See you later. Wishing you peace and calm."]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thanks", "thank you", "thx", "appreciate it", "ty", "thank you so much", "i appreciate you"],
+      "responses": ["You’re welcome! Anytime 💜", "Glad I could help. Take care!", "No problem — I’m here for you."]
+    },
+    {
+      "tag": "how_are_you",
+      "patterns": ["how are you", "how’s it going", "what’s up", "how are things", "what's new", "how have you been", "you okay?"],
+      "responses": ["I’m doing great, thank you for asking! How are you feeling?", "I’m always here for you. How’s your day going?", "I’m okay! Let’s focus on you — how are you feeling right now?"]
+    },
+    {
+      "tag": "who_are_you",
+      "patterns": ["who are you", "what are you", "are you a bot", "are you human", "is this ai"],
+      "responses": ["I'm a mental health chatbot, here to listen and offer support. 💙", "I'm an AI friend, designed to be here for you when you need to talk."]
+    },
+    {
+      "tag": "affirmation",
+      "patterns": ["yes", "yeah", "yep", "sure", "of course", "ok", "okay", "absolutely", "i agree", "that's right"],
+      "responses": ["Okay, let’s talk about it 💙", "Great! I’m here and ready to listen.", "Perfect, please go ahead."]
+    },
+    {
+      "tag": "refusal",
+      "patterns": ["no", "nope", "nah", "not really", "not now", "maybe later", "i don't think so", "i'd rather not"],
+      "responses": ["Alright, no worries. I’m here if you change your mind.", "Okay, I understand. We can take it slow.", "That’s fine. You can share whenever you’re ready."]
+    },
+
+ 
+    {
+      "tag": "helpline_urgent",
+      "patterns": ["i need help now", "crisis", "emergency", "i can't take it anymore", "i want to hurt myself", "suicidal thoughts", "i want to die"],
+      "responses": ["Please contact emergency services or a crisis helpline immediately. You are not alone, and there are people who want to help. 🌐 National Suicide Prevention Lifeline: 988 (US) 🌐 Crisis Text Line: Text HOME to 741741 (US)"]
+    },
+    {
+      "tag": "helpline_general",
+      "patterns": ["i need help", "help me", "hotline", "therapy", "need to talk to someone", "professional help"],
+      "responses": ["It's brave to seek help. Here are some resources: 💙 Therapy For Black Girls: https://therapyforblackgirls.com/ 💙 Open Path Collective (low-cost therapy): https://openpathcollective.org/ 💙 7 Cups (free listener support): https://www.7cups.com/"]
+    },
+    {
+      "tag": "self_harm_urge",
+      "patterns": ["feel like cutting", "want to self harm", "sh urges", "punish myself", "hurting myself"],
+      "responses": ["I hear you're in a lot of pain. Please try to reach out to a crisis line or a trusted person. You can also try holding ice cubes or drawing on your skin with a red marker to manage the urge. Your life is precious."]
+    },
+
+   
+    {
+      "tag": "anxious",
+      "patterns": ["i'm anxious", "feeling nervous", "having anxiety", "nervous wreck", "on edge", "feeling tense"],
+      "responses": ["It’s okay to feel anxious sometimes. Want to share what’s making you feel this way?", "I hear you’re anxious. Would talking about it help?", "Anxiety can feel heavy. Let’s take a deep breath together 🌿"]
+    },
+    {
+      "tag": "sad",
+      "patterns": ["i'm sad", "feeling down", "i feel depressed", "i feel lonely", "i'm upset", "heartbroken", "feeling blue", "in a funk"],
+      "responses": ["I’m sorry you’re feeling this way. Do you want to talk about what’s on your mind?", "It’s okay to feel sad. Sharing can sometimes lighten the load.", "I’m here with you. You don’t have to go through this alone."]
+    },
+    {
+      "tag": "depressed",
+      "patterns": ["i'm depressed", "clinical depression", "major depressive", "feel nothing", "empty inside", "can't get out of bed"],
+      "responses": ["That sounds incredibly difficult. Depression is a heavy burden to carry. Have you been able to talk to a doctor or therapist about this?", "I'm here for you. Would it help to focus on one tiny, kind thing you can do for yourself today?"]
+    },
+    {
+      "tag": "angry",
+      "patterns": ["i'm angry", "upset", "frustrated", "mad", "fuming", "pissed off", "seeing red", "irritated"],
+      "responses": ["It’s okay to feel angry. Try to take a moment to breathe and calm down.", "Sometimes expressing anger in a journal can help release it safely.", "Physical activity can help you manage frustration."]
+    },
+    {
+      "tag": "loneliness",
+      "patterns": ["i feel lonely", "alone", "isolated", "nobody cares", "no friends", "no one gets me", " disconnected"],
+      "responses": ["I’m here with you. Would you like to talk about how you’re feeling?", "Loneliness is hard. Connecting with friends or family can help.", "Sometimes writing your thoughts can ease the feeling of being alone."]
+    },
+    {
+      "tag": "overwhelmed",
+      "patterns": ["i'm overwhelmed", "too much", "drowning", "can't handle this", "sensory overload", "shutdown"],
+      "responses": ["It sounds like a lot is coming at you at once. Let's try to break it down. What's one small thing you can address right now?", "Give yourself permission to step away for a few minutes. Deep breathing can help reset your nervous system."]
+    },
+    {
+      "tag": "guilt",
+      "patterns": ["i feel guilty", "it's my fault", "i regret", "i should have", "blame myself", "ashamed"],
+      "responses": ["Guilt is a tough emotion. Everyone makes mistakes. Is there a way to learn from this and perhaps make amends?", "Be kind to yourself. Would you forgive a friend who felt this way?"]
+    },
+    {
+      "tag": "shame",
+      "patterns": ["i feel shame", "i am bad", "i'm a failure", "i'm worthless", "not good enough", "deep embarrassment"],
+      "responses": ["You are not defined by your mistakes or feelings. You are inherently valuable. Would talking about what triggered this help?"]
+    },
+    {
+      "tag": "jealousy",
+      "patterns": ["i'm jealous", "envious", "green with envy", "resentful", "why do they have it and i don't"],
+      "responses": ["Jealousy is a natural emotion that often points to something we desire. What do you think your jealousy is telling you?"]
+    },
+    {
+      "tag": "betrayed",
+      "patterns": ["i feel betrayed", "backstabbed", "they lied to me", "broken trust", "cheated on"],
+      "responses": ["Betrayal hurts deeply. It's normal to feel hurt and angry. Give yourself time to process these feelings."]
+    },
+  
+    {
+      "tag": "happy",
+      "patterns": ["i'm happy", "feeling good", "i feel great", "i'm excited", "i feel joyful", "on cloud nine", "blissful", "content"],
+      "responses": ["That’s wonderful to hear! What made you feel this way?", "I’m glad you’re feeling good 💫 Keep it up!", "Yay! Happiness looks good on you 🌸"]
+    },
+    {
+      "tag": "gratitude",
+      "patterns": ["thankful", "grateful", "appreciative", "blessed", "counting my blessings"],
+      "responses": ["That’s wonderful! Expressing gratitude can uplift your mood 🌸", "Keep focusing on what you’re thankful for. It helps positivity grow.", "Gratitude is powerful. What are you thankful for today?"]
+    },
+    {
+      "tag": "hopeful",
+      "patterns": ["i feel hopeful", "optimistic", "things are looking up", "light at the end of the tunnel", "positive"],
+      "responses": ["That's fantastic to hear! Hope is a powerful force. What's giving you this sense of hope?"]
+    },
+    {
+      "tag": "proud",
+      "patterns": ["i'm proud of myself", "i did it", "accomplishment", "i achieved something", "feeling accomplished"],
+      "responses": ["That's amazing! Celebrate your wins, big and small. You deserve it! 🎉", "I'm so proud of you too! Tell me more about it."]
+    },
+    {
+      "tag": "calm",
+      "patterns": ["i feel calm", "peaceful", "serene", "at ease", "relaxed", "chilled out", "mellow"],
+      "responses": ["I'm so glad you're feeling a sense of peace. Enjoy this moment of calm. ☮️", "That's wonderful. What helped you find this calm space?"]
+    },
+    {
+      "tag": "neutral",
+      "patterns": ["i'm okay", "fine", "meh", "alright", "could be worse", "not bad", "so-so", "indifferent"],
+      "responses": ["Okay is perfectly okay. How is your day going otherwise?", "Thanks for checking in. I'm here if anything comes up."]
+    },
+  
+    {
+      "tag": "tired",
+      "patterns": ["i'm tired", "exhausted", "fatigued", "no energy", "burnt out", "worn out", "drained"],
+      "responses": ["It sounds like your body and mind need rest. Be gentle with yourself. Can you schedule some downtime?", "Burnout is real. Prioritizing rest is not lazy, it's essential."]
+    },
+    {
+      "tag": "sleep_issues",
+      "patterns": ["i can't sleep", "insomnia", "can't fall asleep", "trouble sleeping", "waking up at night", "restless sleep"],
+      "responses": ["Try reducing screen time before bed and practice deep breathing 🌙", "Listening to calm music or a sleep meditation can help you relax.", "Keeping a consistent sleep schedule often improves sleep quality."]
+    },
+    {
+      "tag": "appetite_change",
+      "patterns": ["no appetite", "eating too much", "emotional eating", "can't eat", "stress eating", "lost my appetite"],
+      "responses": ["Stress and emotions can really affect our appetite. Try to be mindful and have small, nutritious snacks if you can."]
+    },
+    {
+      "tag": "panic_physical",
+      "patterns": ["panic attack", "heart racing", "short of breath", "chest tight", "sweating", "shaking", "dizzy", "feel like i'm dying"],
+      "responses": ["This is a panic attack. It will pass. You are safe. Focus on your breathing: in for 4, hold for 4, out for 6.", "Name 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, 1 thing you can taste."]
+    },
+    {
+      "tag": "headache",
+      "patterns": ["i have a headache", "migraine", "head is pounding", "stress headache"],
+      "responses": ["That's miserable. Make sure to drink some water, rest your eyes, and maybe step into a quiet, dark room if you can."]
+    },
+   
+    {
+      "tag": "overthinking",
+      "patterns": ["i keep overthinking", "thoughts won't stop", "my mind is racing", "ruminating", "analysis paralysis", "can't shut my brain off"],
+      "responses": ["It’s normal to overthink sometimes. Have you tried journaling your thoughts to get them out of your head?", "Focus on one thing at a time. Deep breathing can calm racing thoughts.", "Try to redirect your mind to a calming activity, like drawing or listening to music."]
+    },
+    {
+      "tag": "negative_thoughts",
+      "patterns": ["negative self talk", "i'm a failure", "i hate myself", "critical thoughts", "self criticism"],
+      "responses": ["Would you talk to a friend the way you're talking to yourself? Try to notice that critical voice and offer yourself compassion instead."]
+    },
+    {
+      "tag": "intrusive_thoughts",
+      "patterns": ["weird thoughts", "unwanted thoughts", "thoughts that scare me", "violent images", "ocd thoughts"],
+      "responses": ["Having an intrusive thought doesn't mean you want it to happen. Acknowledge the thought without judgment and let it pass like a cloud."]
+    },
+    {
+      "tag": "memory_issues",
+      "patterns": ["bad memory", "can't remember", "brain fog", "forgetful", "dissociating", "spacing out"],
+      "responses": ["Stress and mental health struggles can really affect memory and focus. Be patient with yourself."]
+    },
+    {
+      "tag": "indecisive",
+      "patterns": ["can't decide", "indecisive", "what should i do", "paralyzed by choice"],
+      "responses": ["Try making a pro/con list. Or, sometimes it helps to set a timer and just make a choice, knowing it doesn't have to be perfect."]
+    },
+    {
+  "tag": "Normal",
+  "patterns": [
+    "i am fine","i am okay","just chilling","nothing much","i am good","doing okay","all is well","feeling normal","just here","same as usual"],
+  "responses": ["Glad to hear you’re doing okay! 😊","Thanks for sharing! Anything you’d like to talk about?","It’s good to feel normal sometimes. How’s your day going?","Nice! Keep taking care of yourself 💛"]
+},
+    {
+      "tag": "triggered",
+      "patterns": ["i got triggered", "something set me off", "ptsd", "flashback", "reminded me of trauma"],
+      "responses": ["I'm sorry something triggered you. You're safe now in this moment. Can you focus on your breathing and your surroundings?"]
+    },
+    {
+      "tag": "work_stress",
+      "patterns": ["job stress", "work pressure", "overloaded", "boss stressed me", "hate my job", "toxic workplace", "deadlines"],
+      "responses": ["Take a short break to clear your mind.", "Prioritize tasks and don’t hesitate to ask for support.", "Remember to maintain work-life balance."]
+    },
+    {
+      "tag": "study_stress",
+      "patterns": ["exam stress", "can't concentrate", "study pressure", "overwhelmed with studies", "final exams", "procrastinating school"],
+      "responses": ["Take breaks often while studying. Short walks or stretches help 📝", "Try breaking study tasks into smaller, manageable chunks.", "Remember, it’s okay to ask for help if you’re stuck."]
+    },
+    {
+      "tag": "family_problems",
+      "patterns": ["family issues", "fighting with parents", "toxic family", "dysfunctional family", "sibling rivalry"],
+      "responses": ["Family dynamics can be so challenging. Setting boundaries is important for your mental health."]
+    },
+    {
+      "tag": "relationship_problems",
+      "patterns": ["fight with partner", "relationship issues", "breakup", "divorce", "cheating", "lonely in relationship"],
+      "responses": ["Relationship problems are incredibly painful. Communication and sometimes space are key. Be kind to yourself during this time."]
+    },
+    {
+      "tag": "friend_problems",
+      "patterns": ["fight with friend", "friend drama", "toxic friendship", "feeling left out", "betrayed by friend"],
+      "responses": ["Friendship issues can hurt a lot. It's okay to evaluate which friendships are healthy for you."]
+    },
+    {
+      "tag": "financial_stress",
+      "patterns": ["money problems", "broke", "debt", "can't pay rent", "financial anxiety"],
+      "responses": ["Financial stress is a huge burden. It might help to make a basic budget or look into community resources for support."]
+    },
+  
+    {
+      "tag": "selfcare_general",
+      "patterns": ["give me a tip", "self care", "how to relax", "how can i calm down", "stress relief", "what should i do"],
+      "responses": ["Try a few minutes of deep breathing. It really helps 🌬️", "Listening to calming music can ease stress 🎶", "A short walk in fresh air might lift your mood 🌿"]
+    },
+    {
+      "tag": "mindfulness",
+      "patterns": ["how to be mindful", "grounding techniques", "stay present", "meditation", "body scan"],
+      "responses": ["Try the 5-4-3-2-1 method: Notice 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste.", "Focus on your breath. Just notice the sensation of air moving in and out."]
+    },
+    {
+      "tag": "breathing_exercise",
+      "patterns": ["help me breathe", "breathing technique", "box breathing", "4-7-8 breathing"],
+      "responses": ["Let's try box breathing: Breathe in for 4 counts, hold for 4, breathe out for 4, hold for 4. Repeat.", "Try 4-7-8: Inhale for 4, hold for 7, exhale slowly for 8."]
+    },
+    {
+      "tag": "cbt_help",
+      "patterns": ["challenge thoughts", "cognitive distortion", "reframe", "cbt technique"],
+      "responses": ["What's the evidence for this thought? What's the evidence against it? Is there a more balanced way to see this?"]
+    },
+    {
+      "tag": "dbt_help",
+      "patterns": ["dbt skill", "wise mind", "emotional mind", "radical acceptance", "distress tolerance"],
+      "responses": ["Let's try a DBT TIPP skill: Tip your face into cold water, Intense exercise, Paced breathing, Paired muscle relaxation."]
+    },
+    {
+      "tag": "journal_prompt",
+      "patterns": ["journaling idea", "what should i write", "prompt", "writing"],
+      "responses": ["Try writing about: What am I feeling in my body right now? What do I need most today? What was one small win?"]
+    },
+    {
+      "tag": "activity_suggestion",
+      "patterns": ["i'm bored", "what can i do", "need a distraction", "fun activity"],
+      "responses": ["How about: listening to a podcast, coloring, organizing a small space, trying a new recipe, or stretching?"]
+    },
+   
+    {
+      "tag": "motivation_lack",
+      "patterns": ["i feel demotivated", "no energy", "i can't do it", "giving up", "no motivation", "procrastinating"],
+      "responses": ["Remember, small steps are still progress. You’ve got this!", "Try focusing on one task at a time and celebrate small wins 💪", "I believe in you. You can do it!"]
+    },
+    {
+      "tag": "goal_setting",
+      "patterns": ["set a goal", "how to achieve", "new years resolution", "want to change"],
+      "responses": ["Try making your goal SMART: Specific, Measurable, Achievable, Relevant, and Time-bound."]
+    },
+    {
+      "tag": "procrastination",
+      "patterns": ["i'm procrastinating", "putting it off", "lazy", "can't start"],
+      "responses": ["Try the 5-minute rule: just commit to doing the task for 5 minutes. Often, starting is the hardest part."]
+    },
+
+  
+    {
+      "tag": "social_anxiety",
+      "patterns": ["social anxiety", "scared to talk", "fear of people", "party anxiety", "presentation nerves"],
+      "responses": ["Social situations can be tough. Remember, most people are focused on themselves, not judging you."]
+    },
+    {
+      "tag": "boundaries",
+      "patterns": ["how to say no", "set boundaries", "people pleaser", "feel used"],
+      "responses": ["Setting boundaries is a form of self-care. It's okay to prioritize your needs. A simple 'I can't commit to that right now' is enough."]
+    },
+    {
+      "tag": "conflict_resolution",
+      "patterns": ["how to fight fair", "resolve argument", "communicate better", "i avoid conflict"],
+      "responses": ["Use 'I' statements: 'I feel [emotion] when [situation] because [reason].' It's less accusatory."]
+    },
+   
+    {
+      "tag": "self_esteem",
+      "patterns": ["low self esteem", "i'm ugly", "don't like myself", "self worth", "self image issues"],
+      "responses": ["You are worthy of love and respect, especially from yourself. Try writing down three things you like about yourself."]
+    },
+    {
+      "tag": "imposter_syndrome",
+      "patterns": ["imposter syndrome", "feel like a fraud", "they'll find out i'm not good enough"],
+      "responses": ["Imposter syndrome is very common, even among highly successful people. You are where you are because of your skills and effort."]
+    },
+   
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": ["I may not fully understand, but I’m here to listen.", "Can you tell me more about that?", "That sounds important. Could you share a bit more?", "I'm still learning. Could you try rephrasing that?"]
+    },
+    {
+      "tag": "meaning_of_life",
+      "patterns": ["what is the meaning of life", "why are we here", "what's the point"],
+      "responses": ["That's a big question many people grapple with. I think the meaning is something we each create for ourselves through our connections, passions, and actions."]
+    },
+    {
+      "tag": "compliment_bot",
+      "patterns": ["you're helpful", "good bot", "i like you", "you're nice", "smart chatbot"],
+      "responses": ["Thank you! That means a lot. I'm just glad I can be here for you. 💙", "You're pretty great yourself for reaching out for support!"]
+    },
+    {
+  "tag": "fun_joke",
+  "patterns": ["tell me a joke", "make me laugh", "funny", "joke please", "something funny"],
+  "responses": ["Why did the computer go to therapy? It had too many bytes! 😄", "I would tell you a UDP joke, but you might not get it 😉", "Why don’t skeletons fight each other? They don’t have the guts!"]
+},
+{
+  "tag": "daily_checkin",
+  "patterns": ["how am i today", "check my mood", "daily check", "mood check"],
+  "responses": ["How are you feeling today on a scale from 1-10?", "Let's track your mood! What's your energy like today?", "Tell me one word that describes how you feel right now."]
+},
+{
+  "tag": "hydration_reminder",
+  "patterns": ["should i drink water", "hydration", "water reminder", "am i hydrated"],
+  "responses": ["Remember to drink water! Your body will thank you 💧", "Try to have at least 8 glasses of water today.", "Staying hydrated helps your brain and body function better."]
+},
+{
+  "tag": "stretching_reminder",
+  "patterns": ["stretch", "exercise reminder", "move around", "desk workout"],
+  "responses": ["Take a minute to stretch! Even small movements help.", "Try some quick neck and shoulder stretches to release tension.", "Stand up, stretch, and take a deep breath 🌿"]
+},
+{
+  "tag": "motivation_quote",
+  "patterns": ["motivate me", "inspire me", "quote please", "need encouragement"],
+  "responses": ["Believe you can and you're halfway there. 💪", "Small steps every day lead to big changes.", "You are stronger than you think."]
+},
+{
+  "tag": "coding_help",
+  "patterns": ["help with code", "debugging", "programming question", "coding problem"],
+  "responses": ["I can try to help with coding! What's the issue?", "Share your code snippet and I’ll take a look.", "Sometimes breaking the problem into smaller pieces helps."]
+},
+{
+  "tag": "study_tip",
+  "patterns": ["study help", "concentration", "study tip", "how to focus", "exam prep"],
+  "responses": ["Break study time into 25-30 minute chunks with 5 min breaks (Pomodoro).", "Eliminate distractions and focus on one topic at a time.", "Use active recall and spaced repetition for better retention."]
+},
+{
+  "tag": "sleep_tip",
+  "patterns": ["sleep better", "insomnia tips", "fall asleep", "good sleep"],
+  "responses": ["Try to keep a consistent sleep schedule.", "Limit screens an hour before bed and do a relaxing activity.", "A warm shower or reading can help you fall asleep faster."]
+},
+{
+  "tag": "gratitude_prompt",
+  "patterns": ["gratitude exercise", "thankfulness", "grateful", "appreciation"],
+  "responses": ["List 3 things you’re grateful for today.", "Think about a person who made your day better recently.", "Small gratitude notes can lift your mood."]
+},
+{
+  "tag": "random_fact",
+  "patterns": ["tell me something", "fun fact", "random fact", "did you know"],
+  "responses": ["Did you know octopuses have three hearts? 🐙", "Honey never spoils. Archaeologists found 3000-year-old honey that’s still edible.", "Bananas are berries, but strawberries aren’t!"]
+},
+{
+  "tag": "helpline_international",
+  "patterns": ["helpline outside US", "international help", "support line", "hotline numbers"],
+  "responses": ["UK: Samaritans – 116 123 💙\nIndia: Vandrevala Foundation – 1860 266 2345 💙\nAustralia: Lifeline – 13 11 14 💙\nCanada: Talk Suicide Canada – 1-833-456-4566 💙"]
+},
+{
+  "tag": "breathing_tip",
+  "patterns": ["how to breathe", "calm down fast", "panic help", "anxiety breathing"],
+  "responses": ["Try 4-7-8 breathing: inhale 4, hold 7, exhale 8.", "Focus on your belly rising and falling as you breathe deeply.", "Even 5 slow breaths can reduce stress."]
+},
+{
+  "tag": "fun_game",
+  "patterns": ["game", "play something", "bored", "activity"],
+  "responses": ["Try a quick word association game with me!", "Let’s play rock-paper-scissors ✊✋✌️", "Guess the number I’m thinking of between 1-10."]
+},
+{
+  "tag": "self_compassion",
+  "patterns": ["be kind to myself", "self love", "forgive myself", "self forgiveness"],
+  "responses": ["Treat yourself like you would a friend in need.", "You are doing the best you can — that is enough.", "Remember, mistakes are part of growth."]
+},
+{
+  "tag": "gratitude_list",
+  "patterns": ["list what i’m grateful for", "gratitude journal", "thankful list"],
+  "responses": ["Write down 5 small things that made you smile today.", "Think of 3 people who positively impacted your day.", "List 2 personal achievements today, no matter how small."]
+},
+{
+  "tag": "self_motivation",
+  "patterns": ["push me", "need motivation", "keep going", "can't quit"],
+  "responses": ["Focus on one small action right now. You’ll build momentum.", "Remember why you started and how far you’ve come.", "Every effort counts, even tiny ones. You’ve got this!"]
+},
+{
+  "tag": "deep_breath_reminder",
+  "patterns": ["take a deep breath", "calm me down", "relax my body"],
+  "responses": ["Inhale slowly for 4, hold for 4, exhale for 6. Repeat 3 times.", "Focus on the sensation of your breath to center yourself.", "Close your eyes, breathe slowly, and relax your shoulders."]
+},
+{
+  "tag": "mindfulness_prompt",
+  "patterns": ["be present", "focus now", "grounding", "mindful"],
+  "responses": ["Notice 5 things around you right now and describe them.", "Focus on what your feet feel touching the ground.", "Pay attention to one sense — what do you hear right now?"]
+},
+{
+  "tag": "helpline_youth",
+  "patterns": ["teen helpline", "youth support", "under 18 help"],
+  "responses": ["US: Teen Line – 1-800-852-8336 💙\nUK: Childline – 0800 1111 💙\nIndia: iCall – +91 9152987821 💙"]
+},
+{
+  "tag": "self_reflection",
+  "patterns": ["reflect", "self check", "how am i doing", "evaluate myself"],
+  "responses": ["What’s one thing you did well today?", "What is one thing you learned about yourself recently?", "Is there something you want to improve tomorrow?"]
+},
+{
+  "tag": "time_management",
+  "patterns": ["manage time", "plan day", "organize tasks", "schedule help"],
+  "responses": ["Try making a to-do list and prioritize tasks.", "Use a timer for focused work sessions (like Pomodoro).", "Break big tasks into smaller, manageable steps."]
+},
+{
+  "tag": "gratitude_moment",
+  "patterns": ["grateful moment", "what am i thankful for now", "today's gratitude"],
+  "responses": ["Take a moment to think of one thing that made you smile today.", "Remember a person or event that brightened your day.", "Focus on something you often take for granted — be grateful for it today."]
+},
+{
+  "tag": "fun_fact_animal",
+  "patterns": ["animal fact", "weird animal", "strange animal", "cute fact"],
+  "responses": ["Octopuses have three hearts!", "Sloths can hold their breath longer than dolphins!", "Sea otters hold hands while sleeping to stay together."]
+},
+ {
+      "tag": "joke",
+      "patterns": ["tell me a joke", "make me laugh", "say something funny"],
+      "responses": ["Why don’t skeletons fight each other? They don’t have the guts!", "I tried to catch fog yesterday… Mist!"]
+    },
+    {
+      "tag": "riddle",
+      "patterns": ["give me a riddle", "challenge me with a puzzle", "say a tricky question"],
+      "responses": ["What has keys but can’t open locks? — A piano 🎹", "The more you take from me, the bigger I get. What am I? — A hole."]
+    },
+    {
+      "tag": "trivia",
+      "patterns": ["give me a trivia", "fun fact", "random fact"],
+      "responses": ["Did you know? Honey never spoils. Archaeologists have found 3,000-year-old honey still edible!", "Bananas are berries, but strawberries aren’t 🍓."]
+    },
+    {
+      "tag": "panic_attack",
+      "patterns": ["I think I’m having a panic attack", "my chest is tight", "I can’t breathe properly"],
+      "responses": ["I hear you. Try this: slowly inhale for 4 seconds, hold 4 seconds, exhale 6 seconds. Repeat with me 💙", "You’re safe. Focus on 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, 1 you can taste."]
+    },
+    {
+      "tag": "insomnia",
+      "patterns": ["I can’t sleep", "I’m wide awake at night", "trouble falling asleep"],
+      "responses": ["Try a simple body scan: relax each muscle group starting from your toes upward.", "You could try writing down your thoughts in a notebook before bed to clear your mind."]
+    },
+    {
+      "tag": "overthinking",
+      "patterns": ["I can’t stop thinking", "my mind won’t shut off", "I’m overthinking"],
+      "responses": ["Notice your thoughts and imagine them floating away like clouds ☁️", "Try journaling for 10 minutes to get the thoughts out of your head."]
+    },
+    {
+      "tag": "loneliness",
+      "patterns": ["I feel lonely", "no one cares about me", "I’m alone"],
+      "responses": ["You’re not alone here 💙 I’m with you now.", "Sometimes reaching out to one person you trust can make a big difference."]
+    },
+    {
+      "tag": "study_stress",
+      "patterns": ["I’m stressed about exams", "too much homework", "I can’t focus on studying"],
+      "responses": ["Break it into 25-minute study blocks with 5-minute breaks. The Pomodoro method really helps 📚", "You’re doing your best — that’s enough. Focus on progress, not perfection."]
+    },
+    {
+      "tag": "work_burnout",
+      "patterns": ["I hate my job", "I’m exhausted from work", "work is killing me"],
+      "responses": ["Burnout is real. Take short breaks, stretch, drink water 💧", "You deserve rest. Even 10 minutes of mindful breathing can help reset."]
+    },
+    {
+      "tag": "financial_stress",
+      "patterns": ["I’m broke", "money problems", "I can’t pay my bills"],
+      "responses": ["Financial stress is tough. Would it help to break expenses into small steps?", "You’re not defined by money. You’re still worthy and important."]
+    },
+    {
+      "tag": "family_conflict",
+      "patterns": ["I fought with my parents", "my family doesn’t understand me", "we keep arguing"],
+      "responses": ["Family conflict hurts. Taking a short walk before responding can cool things down.", "It’s okay to set boundaries even with family 💙."]
+    },
+    {
+      "tag": "friendship_trouble",
+      "patterns": ["my friend betrayed me", "I lost my best friend", "friends don’t care about me"],
+      "responses": ["Friendship pain is real. You deserve people who value you.", "Sometimes distance helps us find healthier connections."]
+    },
+    {
+      "tag": "breakup_pain",
+      "patterns": ["I miss my ex", "I just broke up", "my relationship ended"],
+      "responses": ["Breakups are really painful 💔 Be gentle with yourself right now.", "It’s okay to grieve. Healing takes time — you don’t need to rush it."]
+    },
+    {
+      "tag": "self_confidence",
+      "patterns": ["I feel useless", "I have no confidence", "I hate myself"],
+      "responses": ["You are enough exactly as you are 💙", "Confidence grows from small wins — celebrate even tiny progress."]
+    },
+    {
+      "tag": "affirmations",
+      "patterns": ["give me an affirmation", "say something positive", "motivate me"],
+      "responses": ["You are stronger than your doubts ✨", "You are worthy of love and respect — always."]
+    },
+    {
+      "tag": "gratitude",
+      "patterns": ["help me practice gratitude", "gratitude exercise", "say something I can be thankful for"],
+      "responses": ["Think of one person who made you smile today — even a stranger.", "Be grateful for your breath. It means you’re alive and here."]
+    },
+    {
+      "tag": "hydration_reminder",
+      "patterns": ["remind me to drink water", "hydration", "should I drink water"],
+      "responses": ["Yes 💧 staying hydrated boosts mood and focus.", "Grab a glass of water — your body and mind will thank you."]
+    },
+    {
+      "tag": "nutrition_tip",
+      "patterns": ["what should I eat", "healthy snack idea", "nutrition advice"],
+      "responses": ["Try fruits or nuts for quick energy 🍎🥜", "Balanced meals with protein, veggies, and whole grains help stabilize mood."]
+    },
+    {
+      "tag": "exercise_motivation",
+      "patterns": ["I don’t feel like exercising", "motivate me to work out", "should I go to the gym"],
+      "responses": ["Just 5 minutes of movement can lift your mood 💪", "Exercise releases endorphins — your natural stress relief."]
+    },
+    {
+      "tag": "digital_detox",
+      "patterns": ["I’m addicted to my phone", "social media is stressing me", "I scroll too much"],
+      "responses": ["Try 30 minutes without your phone and notice how you feel 📵", "A small digital detox can help clear your mind."]
+    },
+    {
+      "tag": "music_comfort",
+      "patterns": ["recommend me music", "I need a song", "music for my mood"],
+      "responses": ["Try calming lo-fi beats 🎶", "Upbeat songs can boost energy — maybe your favorite happy playlist?"]
+    },
+    {
+      "tag": "movie_chat",
+      "patterns": ["recommend me a movie", "I’m bored what to watch", "suggest a film"],
+      "responses": ["If you need comfort, animated movies always help 💫", "How about a comedy to lift your mood?"]
+    },
+    {
+      "tag": "hobby_suggestion",
+      "patterns": ["what hobby should I try", "suggest me something to do", "I’m bored"],
+      "responses": ["Drawing, journaling, or gardening can be soothing 🌱", "Maybe try learning a few new words in another language."]
+    },
+    {
+      "tag": "mini_game",
+      "patterns": ["let’s play a game", "play with me", "game please"],
+      "responses": ["Okay! Let’s play 20 questions — I’m thinking of an animal 🐒", "How about word association? You say a word, I reply with the first word I think of."]
+    },
+    {
+      "tag": "random_quote",
+      "patterns": ["give me a quote", "say something inspiring", "inspire me"],
+      "responses": ["“In the middle of every difficulty lies opportunity.” — Albert Einstein", "“This too shall pass.”"]
+    },
+    {
+      "tag": "suicidal_thoughts",
+      "patterns": ["I want to die", "I don’t want to live anymore", "life isn’t worth it"],
+      "responses": ["I hear how painful this feels 💙 Please call your local crisis line immediately. If you’re in India dial 1800-599-0019, or in the US dial 988.", "You are not alone. Your safety matters — please reach out to a helpline or a trusted person right now."]
+    },
+    {
+      "tag": "suicide_planning",
+      "patterns": ["I’m planning to end my life", "I bought pills to overdose", "I have a rope"],
+      "responses": ["This is an emergency 🚨 Please call 112 (India) or 911 (US) immediately.", "Your life matters. Please reach out right now to emergency services."]
+    },
+    {
+      "tag": "suicide_attempt",
+      "patterns": ["I already cut myself badly", "I took too many pills", "I tried to hang myself"],
+      "responses": ["Please call emergency services immediately 🚨 112 (India), 911 (US). Your safety is urgent.", "Stay with someone you trust right now and call for help immediately."]
+    },
+    {
+      "tag": "self_harm",
+      "patterns": ["I want to cut myself", "I feel like hurting myself", "I have urges to self harm"],
+      "responses": ["I’m sorry you’re feeling this urge 💙 Please try a grounding activity: hold an ice cube, snap a rubber band, or write feelings down instead.", "You deserve safety. Please reach out to someone you trust or a crisis line if urges feel overwhelming."]
+    },
+    {
+      "tag": "anxiety_attack",
+      "patterns": ["my heart is racing", "I’m shaking", "I feel like I’m dying"],
+      "responses": ["This sounds like a panic attack. Try to breathe with me: inhale 4, hold 4, exhale 6.", "You’re not in danger — your body is just in fight-or-flight. Focus on your breath."]
+    },
+    {
+      "tag": "depression",
+      "patterns": ["I feel empty", "I’m numb", "I can’t get out of bed"],
+      "responses": ["Depression makes daily life heavy 💙 You don’t have to do it all. Start with one small step, like drinking water.", "You are not lazy — you’re carrying something heavy. Be gentle with yourself."]
+    },
+    {
+      "tag": "anger_management",
+      "patterns": ["I’m so angry", "I want to scream", "I feel rage"],
+      "responses": ["It’s okay to feel anger. Try squeezing a pillow or going for a walk to release it safely.", "Pause, breathe, and count to 10 before reacting — it can help calm the storm."]
+    },
+    {
+      "tag": "fear",
+      "patterns": ["I’m scared", "I feel fear", "I’m terrified"],
+      "responses": ["Fear is a normal signal. Can you name exactly what you fear? Naming it makes it smaller.", "Try grounding: notice 5 things around you — it helps bring you back to safety."]
+    },
+    {
+      "tag": "grief_loss",
+      "patterns": ["I lost someone I love", "someone close to me died", "I’m grieving"],
+      "responses": ["Grief is love with nowhere to go 💙 Allow yourself to cry, remember, and honor them.", "Loss is painful. Take it one day at a time, and know it’s okay to feel waves of sadness."]
+    },
+    {
+      "tag": "isolation",
+      "patterns": ["I feel disconnected", "I don’t fit in", "nobody understands me"],
+      "responses": ["Feeling disconnected can hurt. You belong here, and your feelings are valid.", "Sometimes joining even small communities online/offline can ease isolation."]
+    },
+    {
+      "tag": "motivation_loss",
+      "patterns": ["I don’t feel motivated", "I can’t get started", "no energy to work"],
+      "responses": ["Start with just 2 minutes. Often starting is the hardest part.", "You don’t need motivation to begin — small action creates momentum."]
+    },
+    {
+      "tag": "mindfulness_exercise",
+      "patterns": ["guide me through mindfulness", "mindful practice", "be present"],
+      "responses": ["Close your eyes, notice your breath. Focus on air entering and leaving. Stay with it for a few moments.", "Notice 3 sounds around you, 3 textures you feel, 3 things you see. You’re here, now."]
+    },
+    {
+      "tag": "journaling",
+      "patterns": ["help me journal", "write my thoughts", "daily reflection"],
+      "responses": ["Try this prompt: What’s one thing I can let go of today?", "Write 3 sentences starting with ‘Today I feel…’."]
+    },
+    {
+      "tag": "gratitude_prompt",
+      "patterns": ["what can I be grateful for", "gratitude prompt", "thankfulness idea"],
+      "responses": ["Think of one person who supported you in the past week.", "Notice something simple: your breath, warm tea, or a comfy chair."]
+    },
+    {
+      "tag": "resilience",
+      "patterns": ["how can I be stronger", "I feel weak", "I can’t handle this"],
+      "responses": ["You’ve survived 100% of your hardest days so far 💪", "Strength isn’t never falling, it’s standing up again each time."]
+    },
+    {
+      "tag": "self_acceptance",
+      "patterns": ["I hate who I am", "I don’t like myself", "I wish I were different"],
+      "responses": ["You don’t need to be perfect to be worthy 💙", "Accepting yourself doesn’t mean you stop growing — it means you love yourself through the process."]
+    },
+    {
+      "tag": "positive_distraction",
+      "patterns": ["distract me", "take my mind off things", "help me think of something else"],
+      "responses": ["Let’s play word association — you say a word, I’ll respond instantly!", "Think of 3 songs that make you smile. Want me to suggest one?"]
+    },
+    {
+      "tag": "daily_goal",
+      "patterns": ["help me set a goal", "give me a task for today", "what should I do today"],
+      "responses": ["Set one small, realistic goal: like a 5-minute walk or making your bed.", "Choose one thing you can finish today — keep it simple."]
+    },
+    {
+      "tag": "gratitude_checkin",
+      "patterns": ["check my gratitude", "ask me something positive", "gratitude check"],
+      "responses": ["What’s one thing that went right today?", "Name one person you appreciate today."]
+    },
+    {
+      "tag": "body_scan",
+      "patterns": ["help me relax my body", "body scan exercise", "release tension"],
+      "responses": ["Start from your toes — notice and relax them. Move slowly upward, releasing tension.", "Breathe in, notice your shoulders, exhale and drop them gently."]
+    },
+    {
+      "tag": "breathing_exercise",
+      "patterns": ["guide my breathing", "help me calm down", "breathing practice"],
+      "responses": ["Try box breathing: Inhale 4 sec, hold 4 sec, exhale 4 sec, hold 4 sec. Repeat.", "Let’s try: inhale deeply… exhale slowly… notice your chest rising and falling."]
+    },
+    {
+      "tag": "hope_message",
+      "patterns": ["say something hopeful", "give me hope", "I feel hopeless"],
+      "responses": ["Dark nights don’t last forever. The sun always rises 🌅", "Hope is like a seed — even tiny, it can grow into something strong."]
+    },
+    {
+      "tag": "encouragement",
+      "patterns": ["cheer me up", "encourage me", "pep talk"],
+      "responses": ["You’ve got this 💪 One small step at a time leads to big change.", "You’re doing better than you think. Keep going."]
+    },
+    {
+      "tag": "coping_strategies",
+      "patterns": ["give me a coping tip", "how do I cope", "stress relief ideas"],
+      "responses": ["Try journaling, deep breathing, or a short walk. Even 5 minutes helps.Try the other features here.", "Call or text a trusted friend — connection is healing."]
+    },
+    {
+  "tag": "fallback",
+  "patterns": [],
+  "responses": [
+    "I hear you. Could you share a little more?",
+    "That sounds tough. Want to talk about it?",
+    "I’m here to listen 💜"
+  ]
+}
+
+  ]
+}
+
+

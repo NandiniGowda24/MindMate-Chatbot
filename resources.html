@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Resources</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #ffc0cb; /* Baby pink background */
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffb6c1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px;
+            margin: 15px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            font-size: 1.3em;
+            margin-top: 0;
+        }
+
+        .card p {
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #ff1493;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        h2.section-title {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Health Resources</h1>
+    </header>
+    <main id="resources-container">
+        <!-- Resources will be injected here by JS -->
+    </main>
+
+    <script>
+        const resources = [
+            {
+                category: "🆘 Immediate Help",
+                items: [
+                    {
+                        title: "988 Suicide & Crisis Lifeline",
+                        desc: "Call or text 988 for free, confidential support 24/7. This service connects you with trained counselors who can help in times of crisis.",
+                        linkText: "CDC",
+                        link: "https://www.cdc.gov/mental-health/caring/index.html"
+                    },
+                    {
+                        title: "Crisis Text Line",
+                        desc: 'Text "HELLO" to 741741 to connect with a trained crisis counselor via text message.',
+                        linkText: "Verywell Mind",
+                        link: "https://www.verywellmind.com/national-helpline-database-4799696"
+                    },
+                    {
+                        title: "Samaritans",
+                        desc: "Call 116 123 for free, 24/7 emotional support.",
+                        linkText: "Verywell Mind",
+                        link: "https://www.verywellmind.com/national-helpline-database-4799696"
+                    }
+                ]
+            },
+            {
+                category: "🌐 Online Support & Information",
+                items: [
+                    {
+                        title: "HelpGuide.org",
+                        desc: "Offers evidence-based articles on managing anxiety, depression, stress, and more. It also provides tools like guided meditations and tips for finding a therapist.",
+                        linkText: "HelpGuide.org",
+                        link: "https://www.helpguide.org/mental-health"
+                    },
+                    {
+                        title: "7 Cups",
+                        desc: "Provides free, anonymous online chat with trained listeners, as well as affordable therapy options.",
+                        linkText: "7 Cups",
+                        link: "https://www.7cups.com/"
+                    },
+                    {
+                        title: "Mental Health Coalition Resource Library",
+                        desc: "A collection of resources covering various mental health topics, including anxiety, depression, and support for different communities.",
+                        linkText: "The Mental Health Coalition",
+                        link: "https://www.thementalhealthcoalition.org/resources/"
+                    }
+                ]
+            },
+            {
+                category: "📚 Guides & Self-Help Tools",
+                items: [
+                    {
+                        title: "NHS Five Steps to Mental Wellbeing",
+                        desc: "Practical advice on improving mental health through connecting with others, being active, learning new skills, giving to others, and paying attention to the present moment.",
+                        linkText: "nhs.uk",
+                        link: "https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/five-steps-to-mental-wellbeing/"
+                    },
+                    {
+                        title: 'NIMH "My Mental Health: Do I Need Help?"',
+                        desc: "A guide to help you assess your mental health and decide if you need professional support.",
+                        linkText: "National Institute of Mental Health",
+                        link: "https://www.nimh.nih.gov/health/publications/my-mental-health-do-i-need-help"
+                    }
+                ]
+            },
+            {
+                category: "🧠 Professional Therapy Options",
+                items: [
+                    {
+                        title: "Talkspace",
+                        desc: "Offers online therapy with licensed therapists, providing flexibility and convenience.",
+                        linkText: "Talkspace",
+                        link: "https://www.talkspace.com/"
+                    },
+                    {
+                        title: "BetterHelp",
+                        desc: "Connects you with licensed therapists for online counseling, with a focus on accessibility and affordability.",
+                        linkText: "HelpGuide.org",
+                        link: "https://www.helpguide.org/mental-health"
+                    }
+                ]
+            },
+            {
+                category: "🌍 Community & Peer Support",
+                items: [
+                    {
+                        title: "National Alliance on Mental Illness (NAMI)",
+                        desc: "Provides support, education, and advocacy for individuals affected by mental illness.",
+                        linkText: "NAMI",
+                        link: "https://www.nami.org/"
+                    },
+                    {
+                        title: "The Trevor Project",
+                        desc: "Offers crisis intervention and suicide prevention services to LGBTQ+ youth.",
+                        linkText: "Verywell Mind",
+                        link: "https://www.verywellmind.com/national-helpline-database-4799696"
+                    },
+                    {
+                        title: "Anxiety Is Watching Me",
+                        desc: "A mental health resource hub created by artist Doechii, featuring coping mechanisms and support tools for various communities.",
+                        linkText: "San Francisco Chronicle",
+                        link: "https://www.sfchronicle.com/entertainment/article/doechii-mental-health-website-20250533.php"
+                    }
+                ]
+            }
+        ];
+
+        const container = document.getElementById('resources-container');
+
+        resources.forEach(section => {
+            const sectionHeader = document.createElement('h2');
+            sectionHeader.textContent = section.category;
+            sectionHeader.className = 'section-title';
+            container.appendChild(sectionHeader);
+
+            section.items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                const title = document.createElement('h2');
+                title.textContent = item.title;
+
+                const desc = document.createElement('p');
+                desc.textContent = item.desc;
+
+                const link = document.createElement('a');
+                link.href = item.link;
+                link.target = "_blank";
+                link.textContent = item.linkText;
+
+                card.appendChild(title);
+                card.appendChild(desc);
+                card.appendChild(link);
+
+                container.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>

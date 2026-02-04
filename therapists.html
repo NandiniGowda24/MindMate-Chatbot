@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nearby Therapists</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    #map { height: 65vh; width: 100%; }
+    h1 { text-align: center; margin: 10px 0; }
+    .controls {
+      text-align: center;
+      padding: 10px;
+      background: #f0f0f0;
+    }
+    .controls input, .controls button {
+      padding: 8px;
+      margin: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .therapist-list {
+      padding: 15px;
+      background: #f9f9f9;
+      border-top: 2px solid #ddd;
+    }
+    .therapist-list h2 { margin-bottom: 10px; }
+    .therapist-card {
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+    }
+    .therapist-card strong {
+      display: block;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Find Nearby Therapists</h1>
+
+  <!-- Location search box -->
+  <div class="controls">
+    <input type="text" id="locationInput" placeholder="Enter a city (Bangalore, Mumbai, Chennai, Delhi, Kolkata)">
+    <button onclick="searchLocation()">Search</button>
+  </div>
+
+  <div id="map"></div>
+
+  <div class="therapist-list">
+    <h2>Available Therapists</h2>
+    <div id="therapist-cards"></div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Therapists grouped by city
+    const cityTherapists = {
+      "Delhi": [
+        { name: "Dr. Anjali Sharma", hospital: "AIIMS Delhi", contact: "011-2658 8500", lat: 28.6139, lng: 77.2090, specialty: "Clinical Psychologist" },
+        { name: "Dr. Ramesh Gupta", hospital: "Fortis Hospital", contact: "011-4656 5656", lat: 28.6200, lng: 77.2100, specialty: "Psychiatrist" }
+      ],
+      "Mumbai": [
+        { name: "Dr. Priya Nair", hospital: "Kokilaben Hospital", contact: "022-3066 6666", lat: 19.0760, lng: 72.8777, specialty: "Counselor" },
+        { name: "Dr. Rajesh Patel", hospital: "Lilavati Hospital", contact: "022-2675 1000", lat: 19.0820, lng: 72.8800, specialty: "Therapist" }
+      ],
+      "Bangalore": [
+        { name: "Dr. Meera Rao", hospital: "NIMHANS", contact: "080-2699 5000", lat: 12.9716, lng: 77.5946, specialty: "Clinical Psychologist" },
+        { name: "Dr. Suresh Kumar", hospital: "Manipal Hospital", contact: "080-2502 4444", lat: 12.9750, lng: 77.6000, specialty: "Psychiatrist" }
+      ],
+      "Chennai": [
+        { name: "Dr. Lakshmi Iyer", hospital: "Apollo Hospital", contact: "044-2829 3333", lat: 13.0827, lng: 80.2707, specialty: "Counselor" },
+        { name: "Dr. Arvind Menon", hospital: "MIOT Hospital", contact: "044-4200 2288", lat: 13.0900, lng: 80.2800, specialty: "Therapist" }
+      ],
+      "Kolkata": [
+        { name: "Dr. Sneha Banerjee", hospital: "AMRI Hospital", contact: "033-6626 0000", lat: 22.5726, lng: 88.3639, specialty: "Clinical Psychologist" },
+        { name: "Dr. Abhijit Das", hospital: "Apollo Gleneagles", contact: "033-2320 3040", lat: 22.5800, lng: 88.3700, specialty: "Psychiatrist" }
+      ]
+    };
+
+    // Default location (Delhi)
+    let defaultLat = 28.6139, defaultLng = 77.2090;
+
+    // Initialize map
+    const map = L.map('map').setView([defaultLat, defaultLng], 13);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    let currentMarkers = [];
+
+    function clearMarkers() {
+      currentMarkers.forEach(m => map.removeLayer(m));
+      currentMarkers = [];
+    }
+
+    function addTherapistMarkers(list) {
+      clearMarkers();
+      list.forEach(t => {
+        const marker = L.marker([t.lat, t.lng])
+          .addTo(map)
+          .bindPopup(`<strong>${t.name}</strong><br>${t.specialty}<br>${t.hospital}<br>Contact: ${t.contact}`);
+        currentMarkers.push(marker);
+      });
+    }
+
+    function displayTherapistList(list) {
+      const container = document.getElementById("therapist-cards");
+      container.innerHTML = "";
+      list.forEach(t => {
+        const card = document.createElement("div");
+        card.className = "therapist-card";
+        card.innerHTML = `
+          <strong>${t.name}</strong>
+          ${t.specialty}<br>
+          <em>${t.hospital}</em><br>
+          📞 ${t.contact}
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Search city and load therapists
+    function searchLocation() {
+      const query = document.getElementById("locationInput").value.trim();
+      const city = query.charAt(0).toUpperCase() + query.slice(1).toLowerCase();
+
+      if (!cityTherapists[city]) {
+        alert("Sorry, we only support Bangalore, Mumbai, Chennai, Delhi, and Kolkata right now.");
+        return;
+      }
+
+      // Use first therapist to center map
+      const first = cityTherapists[city][0];
+      map.setView([first.lat, first.lng], 12);
+
+      // Add markers and list
+      addTherapistMarkers(cityTherapists[city]);
+      displayTherapistList(cityTherapists[city]);
+
+      // Add city marker
+      L.marker([first.lat, first.lng]).addTo(map)
+        .bindPopup(`${city}`).openPopup();
+    }
+
+    // On load, show Delhi
+    addTherapistMarkers(cityTherapists["Delhi"]);
+    displayTherapistList(cityTherapists["Delhi"]);
+  </script>
+</body>
+</html>

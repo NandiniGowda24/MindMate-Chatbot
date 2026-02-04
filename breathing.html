@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Meditation Timer — CalmSpace</title>
+  <style>
+    :root {
+      --accent: #8be9fd;
+      --accent-2: #6ee7f0;
+      --text: #e6f7fb;
+      --muted: rgba(230,247,251,0.8);
+      --glass: rgba(255,255,255,0.07);
+      --glass-dark: rgba(0,0,0,0.3);
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; color: var(--text); }
+
+    /* Background video */
+    .bg-video-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+    .bg-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55) contrast(1.05);
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(2,6,11,0.25), rgba(2,6,11,0.55));
+      z-index: -1;
+    }
+
+    /* Centered content */
+    .container {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--glass-dark);
+      border-radius: 18px;
+      padding: 32px;
+      text-align: center;
+      backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      max-width: 420px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    p.lead {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Clock */
+    .clock {
+      width: 260px;
+      height: 260px;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: rgba(255,255,255,0.03);
+      box-shadow: inset 0 6px 18px rgba(0,0,0,0.5);
+    }
+    .time-text {
+      font-size: 50px;
+      font-weight: 700;
+    }
+    .sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .progress-ring {
+      position: absolute;
+      left: -14px;
+      top: -14px;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    button {
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    button.primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border: none;
+      color: #002;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    button.primary:hover {
+      filter: brightness(1.1);
+    }
+    button.ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--muted);
+    }
+    button.ghost:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* Inputs */
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .form-row div {
+      flex: 1;
+    }
+    input[type=number], select, input[type=range] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.25);
+      color: var(--text);
+      outline: none;
+      font-size: 14px;
+    }
+    label {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+      text-align: left;
+    }
+
+    footer.info {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .video-preview {
+      height: 120px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-preview video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+<!-- Background videos -->
+<div class="bg-video-wrap" aria-hidden="true">
+  <video id="forestVideo" loop playsinline muted>
+    <source src="/static/forest.mp4" type="video/mp4">
+  </video>
+
+  <video id="seaVideo" loop playsinline muted style="display:none">
+    <source src="/static/calmsea.mp4" type="video/mp4">
+  </video>
+
+  <video id="nightVideo" loop playsinline muted style="display:none">
+    <source src="/static/Night.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- Separate audio -->
+<audio id="forestAudio" loop><source src="../static/forest.mp3" type="audio/mpeg"></audio>
+<audio id="seaAudio" loop><source src="../static/calmsea.mp4" type="audio/mpeg"></audio>
+<audio id="nightAudio" loop><source src="../static/Night.mp4" type="audio/mpeg"></audio>
+
+<div class="overlay"></div>
+
+<main class="container">
+  <section class="card" role="application" aria-label="Meditation timer">
+    <h1>CalmSpace — Meditation Timer</h1>
+    <p class="lead">Pick a background, set duration, and breathe deeply.</p>
+
+    <div class="clock" id="clock">
+      <svg class="progress-ring" width="288" height="288">
+        <circle cx="144" cy="144" r="130" stroke-width="6" stroke="rgba(255,255,255,0.08)" fill="none"></circle>
+        <circle id="progress" cx="144" cy="144" r="130" stroke-width="6" stroke-linecap="round" fill="none" transform="rotate(-90 144 144)" stroke="url(#g)"></circle>
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0%" stop-color="#8be9fd"/>
+            <stop offset="100%" stop-color="#6ee7f0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div style="text-align:center;z-index:2">
+        <div class="time-text" id="timeDisplay">10:00</div>
+        <div class="sub">Remaining</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="primary" id="startBtn">Start</button>
+      <button class="ghost" id="pauseBtn">Pause</button>
+      <button class="ghost" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label for="minutes">Minutes</label>
+        <input type="number" id="minutes" min="0" max="120" value="10">
+      </div>
+      <div>
+        <label for="seconds">Seconds</label>
+        <input type="number" id="seconds" min="0" max="59" value="0">
+      </div>
+    </div>
+
+    <div>
+      <label for="bgSelect">Background</label>
+      <select id="bgSelect">
+        <option value="forest">Forest Stream</option>
+        <option value="sea">Calm Sea</option>
+        <option value="night">Night Fall</option>
+      </select>
+    </div>
+
+    <div class="video-preview">
+      <video id="previewVid" muted loop playsinline></video>
+    </div>
+
+    <div>
+      <label>Alarm volume</label>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.7">
+    </div>
+
+    <footer class="info">⏳ Press Start to begin. Relax and enjoy your meditation.</footer>
+  </section>
+</main>
+
+<script>
+  // =========================
+  // Elements
+  // =========================
+  const minutesInput = document.getElementById('minutes');
+  const secondsInput = document.getElementById('seconds');
+  const startBtn = document.getElementById('startBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const timeDisplay = document.getElementById('timeDisplay');
+  const bgSelect = document.getElementById('bgSelect');
+  const previewVid = document.getElementById('previewVid');
+  const volume = document.getElementById('volume');
+  const progress = document.getElementById('progress');
+
+  // =========================
+  // Timer state
+  // =========================
+  let totalSeconds = parseInt(minutesInput.value) * 60 + parseInt(secondsInput.value);
+  let remaining = totalSeconds;
+  let timerInterval = null;
+  let isRunning = false;
+
+  // =========================
+  // Progress ring
+  // =========================
+  const R = 140;
+  const C = 2 * Math.PI * R;
+  progress.setAttribute('stroke-dasharray', C);
+  progress.setAttribute('stroke-dashoffset', C);
+
+  function renderTime(sec) {
+    sec = Math.max(0, Math.floor(sec));
+    const m = String(Math.floor(sec / 60)).padStart(2, '0');
+    const s = String(sec % 60).padStart(2, '0');
+    timeDisplay.textContent = `${m}:${s}`;
+  }
+
+  function updateProgress() {
+    if (totalSeconds === 0) {
+      progress.setAttribute('stroke-dashoffset', C);
+      return;
+    }
+    const pct = 1 - (remaining / totalSeconds);
+    progress.setAttribute('stroke-dashoffset', C * (1 - pct));
+  }
+
+  function tick() {
+    if (remaining <= 0) {
+      stopTimer();
+      triggerAlarm();
+      return;
+    }
+    remaining--;
+    renderTime(remaining);
+    updateProgress();
+  }
+
+  // =========================
+  // Background video elements
+  // =========================
+  const videos = {
+    forest: document.getElementById("forestVideo"),
+    sea: document.getElementById("seaVideo"),
+    night: document.getElementById("nightVideo")
+  };
+
+  let activeVideo = videos[bgSelect.value];
+
+  function switchVideo(key) {
+    // Pause and hide all videos
+    Object.values(videos).forEach(v => {
+      v.pause();
+      v.style.display = "none";
+      v.muted = true;
+    });
+
+    // Activate selected video
+    activeVideo = videos[key];
+    activeVideo.style.display = "block";
+    activeVideo.currentTime = 0;
+
+    // Update preview video
+    previewVid.src = activeVideo.querySelector('source').src;
+    previewVid.loop = true;
+    previewVid.muted = true;
+    previewVid.play().catch(() => {});
+  }
+
+  bgSelect.onchange = () => switchVideo(bgSelect.value);
+
+  // =========================
+  // Timer controls
+  // =========================
+  function startTimer() {
+    if (totalSeconds <= 0 || isRunning) return;
+    isRunning = true;
+    timerInterval = setInterval(tick, 1000);
+    activeVideo.muted = false;
+    activeVideo.currentTime = 0;
+    activeVideo.play().catch(() => {});
+  }
+
+  function pauseTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    isRunning = false;
+    activeVideo.pause();
+  }
+
+  function stopTimer() {
+    pauseTimer();
+    remaining = 0;
+    renderTime(0);
+    updateProgress();
+    activeVideo.pause();
+  }
+
+  function resetTimer() {
+    pauseTimer();
+    remaining = totalSeconds;
+    renderTime(remaining);
+    updateProgress();
+    activeVideo.pause();
+  }
+
+  // =========================
+  // Input changes
+  // =========================
+  minutesInput.onchange = () => {
+    totalSeconds = parseInt(minutesInput.value) * 60 + parseInt(secondsInput.value);
+    remaining = totalSeconds;
+    renderTime(remaining);
+    updateProgress();
+  };
+  secondsInput.onchange = minutesInput.onchange;
+
+  // Initialize preview & active video
+  switchVideo(bgSelect.value);
+
+  // =========================
+  // Alarm
+  // =========================
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  function triggerAlarm() {
+    const vol = parseFloat(volume.value || 0.7);
+    const now = audioCtx.currentTime;
+    const freqs = [880, 660, 440, 660];
+    const master = audioCtx.createGain();
+    master.gain.value = vol;
+    master.connect(audioCtx.destination);
+
+    freqs.forEach((f, i) => {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+
+      o.type = 'sine';
+      o.frequency.setValueAtTime(f, now + i * 0.35);
+
+      g.gain.setValueAtTime(0, now + i * 0.35);
+      g.gain.linearRampToValueAtTime(vol * 0.9, now + i * 0.35 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.35 + 0.32);
+
+      o.connect(g);
+      g.connect(master);
+
+      o.start(now + i * 0.35);
+      o.stop(now + i * 0.35 + 0.35);
+    });
+  }
+
+  // =========================
+  // Bind buttons
+  // =========================
+  startBtn.onclick = startTimer;
+  pauseBtn.onclick = pauseTimer;
+  resetBtn.onclick = resetTimer;
+
+  // =========================
+  // Initial render
+  // =========================
+  renderTime(totalSeconds);
+  updateProgress();
+</script>
+
+</body>
+</html>
+

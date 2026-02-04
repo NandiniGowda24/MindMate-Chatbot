@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Journal with Bubble Game</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { margin: 0; background-color: #fff5f8; }
+
+    .container { display: flex; height: 100vh; width: 100%; }
+
+    /* Bubble Game Section */
+    .game {
+      width: 250px;
+      background-color: #f8d7e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .game h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      text-align: center;
+      color: #b23a48;
+    }
+    #gameCanvas {
+      background: #fff0f5;
+      border: 2px solid #b23a48;
+      border-radius: 10px;
+      width: 100%;
+      height: 400px;
+      cursor: pointer;
+    }
+    .score {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #4b2c2c;
+    }
+
+    /* Journal Section */
+    .journal-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background-color: #fff0f5;
+      border-radius: 0 15px 15px 0;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .journal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .journal-header h2 { margin: 0; color: #b23a48; }
+    .journal-header button {
+      background-color: #d8a0b1;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .journal-header button:hover { background-color: #e89aa8; }
+
+    .journal-entry { flex: 1; display: flex; flex-direction: column; }
+    textarea {
+      flex: 1;
+      resize: none;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #f0aeb8;
+      outline: none;
+      background-color: #fff0f5;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .save-btn {
+      margin-top: 15px;
+      align-self: flex-end;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #b23a48;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .save-btn:hover { background-color: #e75481; }
+
+    .entries { margin-top: 20px; }
+    .entry-card {
+      background-color: #f7d6e0;
+      padding: 12px 15px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Bubble Game -->
+    <div class="game">
+      <h2>Bubble Pop 🎈</h2>
+      <canvas id="gameCanvas"></canvas>
+      <div class="score">Score: <span id="score">0</span></div>
+    </div>
+
+    <!-- Journal Section -->
+    <div class="journal-section">
+      <div class="journal-header">
+        <h2>Today's Entry</h2>
+        <button id="clearBtn">Clear</button>
+      </div>
+
+      <div class="journal-entry">
+        <textarea id="journalText" placeholder="Write your thoughts here..."></textarea>
+        <button class="save-btn" id="saveBtn">Save Entry</button>
+      </div>
+
+      <div class="entries" id="entriesList"></div>
+    </div>
+
+  </div>
+
+<script>
+// Journal Logic
+const saveBtn = document.getElementById('saveBtn');
+const clearBtn = document.getElementById('clearBtn');
+const textarea = document.getElementById('journalText');
+const entriesList = document.getElementById('entriesList');
+
+// Load saved entries
+function loadEntries() {
+  entriesList.innerHTML = '';
+  const entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+  entries.forEach(entry => {
+    const div = document.createElement('div');
+    div.classList.add('entry-card');
+    div.textContent = entry;
+    entriesList.prepend(div);
+  });
+}
+
+// Save entry
+saveBtn.addEventListener('click', () => {
+  const text = textarea.value.trim();
+  if (!text) return alert('Please write something before saving!');
+  const entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+  entries.push(text);
+  localStorage.setItem('journalEntries', JSON.stringify(entries));
+  textarea.value = '';
+  loadEntries();
+});
+
+// Clear entries
+clearBtn.addEventListener('click', () => {
+  if (confirm("Do you want to clear all entries?")) {
+    textarea.value = '';
+    localStorage.removeItem('journalEntries');
+    loadEntries();
+  }
+});
+loadEntries();
+
+
+// Bubble Game Logic
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+let bubbles = [];
+let score = 0;
+
+function createBubble() {
+  const radius = 15 + Math.random() * 15;
+  const x = Math.random() * (canvas.width - radius * 2) + radius;
+  const y = canvas.height + radius;
+  const speed = 1 + Math.random() * 2;
+  bubbles.push({ x, y, radius, speed });
+}
+
+function drawBubbles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  bubbles.forEach((bubble, i) => {
+    bubble.y -= bubble.speed;
+    ctx.beginPath();
+    ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(178,58,72,0.4)";
+    ctx.fill();
+    ctx.strokeStyle = "#b23a48";
+    ctx.stroke();
+
+    if (bubble.y + bubble.radius < 0) bubbles.splice(i, 1);
+  });
+}
+
+canvas.addEventListener("click", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const clickY = e.clientY - rect.top;
+
+  bubbles.forEach((bubble, i) => {
+    const dist = Math.hypot(clickX - bubble.x, clickY - bubble.y);
+    if (dist < bubble.radius) {
+      bubbles.splice(i, 1);
+      score++;
+      document.getElementById("score").innerText = score;
+    }
+  });
+});
+
+function gameLoop() {
+  if (Math.random() < 0.03) createBubble();
+  drawBubbles();
+  requestAnimationFrame(gameLoop);
+}
+gameLoop();
+</script>
+
+</body>
+</html>
